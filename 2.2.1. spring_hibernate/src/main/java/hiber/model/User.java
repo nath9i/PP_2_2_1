@@ -1,6 +1,15 @@
 package hiber.model;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
@@ -20,16 +29,16 @@ public class User {
    private String email;
 
    @OneToOne(cascade = CascadeType.PERSIST)
-   @JoinColumn(name = "car")
-   private Car car;
+   @JoinColumn(name = "car_id", referencedColumnName = "id")
+   private Car car_id;
 
    public User() {}
    
-   public User(String firstName, String lastName, String email, Car car) {
+   public User(String firstName, String lastName, String email, Car car_id) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
-      this.car = car;
+      this.car_id = car_id;
    }
 
    public Long getId() {
@@ -64,12 +73,12 @@ public class User {
       this.email = email;
    }
 
-   public Car getCar() {
-      return car;
+   public Car getCar_id() {
+      return car_id;
    }
 
-   public void setCar(Car car) {
-      this.car = car;
+   public void setCar_id(Car car) {
+      this.car_id = car;
    }
 
    @Override
